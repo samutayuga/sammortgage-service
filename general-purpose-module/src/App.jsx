@@ -1,36 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Greeting from './components/index.jsx'
+import NavBar from './components/NavBar';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import SliderSelect from './components/SliderSelect';
+import { useState } from 'react';
+import TenureSelect from './components/TenureSelect';
+import Result from './components/Result';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState({
+    homeValue: 3000,
+    downPayment: 3000 * 0.2,
+    loanAmount: 3000 * 0.8,
+    loanTerm: 5,
+    interestRate: 5
+  })
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <Greeting>Hello</Greeting>
-    </>
+    <div className='App'>
+      <NavBar />
+      <Container maxWidth="xl" sx={{ marginTop: 4 }}>
+        <Grid container spacing={5} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <SliderSelect data={data} setData={setData} />
+            <TenureSelect data={data} setData={setData} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Result data={data} />
+          </Grid>
+        </Grid>
+
+
+      </Container>
+
+    </div>
   )
 }
 
