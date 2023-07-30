@@ -3,10 +3,12 @@ import './App.css'
 import NavBar from './components/NavBar';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import SliderSelect from './components/SliderSelect';
+import SliderSelect from './components/HVSlider';
 import { useState } from 'react';
 import TenureSelect from './components/TenureSelect';
 import Result from './components/Result';
+import HVSlider from './components/HVSlider';
+import LADPAmountSlider from './components/LoanAmountSlider';
 
 function App() {
   const [data, setData] = useState({
@@ -23,8 +25,9 @@ function App() {
       <Container maxWidth="xl" sx={{ marginTop: 4 }}>
         <Grid container spacing={5} alignItems="center">
           <Grid item xs={12} md={6}>
-            <SliderSelect data={data} setData={setData} />
+            <HVSlider data={data} setData={setData} />
             <TenureSelect data={data} setData={setData} />
+            <LADPAmountSlider data={data} setData={setData}/>
           </Grid>
           <Grid item xs={12} md={6}>
             <Result data={data} />

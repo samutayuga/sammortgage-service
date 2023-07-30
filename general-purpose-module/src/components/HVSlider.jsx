@@ -1,6 +1,6 @@
 import SliderComponent from './common/SliderComponent';
 
-const SliderSelect = ({data,setData}) => {
+const HVSlider = ({data,setData}) => {
     const bank_limit = 10000;
 
     return (
@@ -20,7 +20,7 @@ const SliderSelect = ({data,setData}) => {
             steps={100}
             unit={"$"}
             amount={data.homeValue}
-            label={"Home Value"}
+            label={"Home Valuation"}
             value={data.homeValue}
             />
 
@@ -28,4 +28,4 @@ const SliderSelect = ({data,setData}) => {
     );
 }
 
-export default SliderSelect;
+export default HVSlider;
