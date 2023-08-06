@@ -1,6 +1,6 @@
 import {describe,expect, it} from 'vitest'
 import renderer from 'react-test-renderer'
-import Greeting from './index.jsx';
+import Greeting from '../src/components/index';
 import React from 'react'
 
 describe('Greeting Component',()=>{

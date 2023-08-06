@@ -1,9 +1,10 @@
-import { InputLabel, MenuItem, FormControl, Select } from "@mui/material";
+import { InputLabel, MenuItem, FormControl, Select, SelectChangeEvent } from "@mui/material";
+import { MortgageComponentProps } from "../model";
 
-const TenureSelect = ({ data, setData }) => {
-    const handleChange = (event) => {
-        setData({ ...data, loanTerm: event.target.value });
-
+const TenureSelect = (mortgageProp: MortgageComponentProps) => {
+    const { mortgage, setMortgage } = mortgageProp
+    const handleChange = (event: SelectChangeEvent<number>) => {
+        setMortgage({ ...mortgage, loanTerm: event.target.value as number });
     };
 
     return (
@@ -12,7 +13,7 @@ const TenureSelect = ({ data, setData }) => {
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={data.loanTerm}
+                value={mortgage.loanTerm}
                 label="Tenure"
                 defaultValue={5}
                 onChange={handleChange}

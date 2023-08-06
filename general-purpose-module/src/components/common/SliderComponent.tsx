@@ -1,43 +1,43 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Typography, Slider } from "@mui/material";
-import {Stack} from "@mui/system";
+import { Stack } from "@mui/system";
+import { SliderProps } from "../../model";
 
-const SliderComponent = ({
-    defaultValue,
-    min,
-    max,
-    label,
-    unit,
-    onChange,
-    amount,
-    value,
-    steps
-}) => {
+const SliderComponent = (sliderProps: SliderProps) => {
+    const { defaultValue,
+        sliderMin,
+        slidermax,
+        sliderLabel,
+        sliderUnit,
+        onChange,
+        sliderAmount,
+        sliderValue,
+        sliderSteps } = sliderProps
     return (
         <Stack my={1.4}>
             <Stack gap={1}>
-                <Typography variant="subtitle">{label}</Typography>
+                <Typography variant="subtitle1">{sliderLabel}</Typography>
                 <Typography variant="h5">
-                    {unit} {amount}
+                    {sliderUnit} {sliderAmount}
                 </Typography>
             </Stack>
             <Slider
-                min={min}
-                max={max}
+                min={sliderMin}
+                max={slidermax}
                 defaultValue={defaultValue}
                 aria-label="Default"
                 valueLabelDisplay="auto"
                 onChange={onChange}
-                value={value}
+                value={sliderValue}
                 marks
-                step={steps}
+                step={sliderSteps}
             />
             <Stack direction="row" justifyContent="space-between">
                 <Typography variant="caption" color="text.secondary">
-                    {unit} {min}
+                    {sliderUnit} {sliderMin}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                    {unit} {max}
+                    {sliderUnit} {slidermax}
                 </Typography>
             </Stack>
         </Stack>

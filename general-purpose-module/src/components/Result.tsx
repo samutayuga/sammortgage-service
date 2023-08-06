@@ -1,20 +1,29 @@
 import { Stack, Typography } from "@mui/material";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useEffect } from "react";
 import { Pie } from "react-chartjs-2";
+import morgagateCalc from "mortgage-js"
+import { MortgageModel } from "../model";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Result = ({ data }) => {
-    const { homeValue, loanAmount, loanTerm, interestRate } = data;
+
+
+const Result = (data: MortgageModel) => {
+    const { homeValue, loanAmount, loanTerm, interestRate, downPayment } = data;
 
     const totalLoanMonths = loanTerm * 12;
-    const interestPerMonth = interestRate / 100 / 12;
+    const mortgageCalculator = morgagateCalc.createMortgageCalculator();
+    mortgageCalculator.totalPrice = homeValue;
+    mortgageCalculator.downPayment = downPayment;
+    mortgageCalculator.interestRate = (interestRate / 100);
+    mortgageCalculator.months = (12 * loanTerm);
+    mortgageCalculator.mortgageInsuranceEnabled = false;
 
-    const monthlyPayment = (loanAmount *
-        interestPerMonth *
-        (1 + interestPerMonth) ** totalLoanMonths) /
-        ((1 + interestPerMonth) ** totalLoanMonths - 1);
-
+    useEffect(() => { },
+        [])
+    const monthlyPaymentResult = mortgageCalculator.calculatePayment();
+    const monthlyPayment = monthlyPaymentResult.principalAndInterest;
     const totalInterestGenerated = monthlyPayment * totalLoanMonths - loanAmount;
 
     const pieChartData = {
